@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+encoding//src/authCodeProvider/Demo.py=UTF-8
+encoding//src/authCodeProvider/config.py=UTF-8
+encoding//src/authCodeProvider/getCaptcha.py=UTF-8
+encoding//src/authCodeProvider/myImage.py=UTF-8
+encoding//src/authCodeProvider/serverMain.py=UTF-8
+encoding//src/authCodeProvider/tessApi.py=UTF-8
+encoding//src/authCodeProvider/testclient.py=UTF-8
