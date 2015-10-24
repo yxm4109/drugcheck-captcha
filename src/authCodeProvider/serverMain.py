@@ -28,6 +28,8 @@ import sys
 import time
 import os
 import struct
+import Image
+import getCaptcha
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(BASE_DIR)
@@ -41,7 +43,7 @@ logging.basicConfig(level=logging.DEBUG,\
                     filemode='a+')
 
 
-LOCAL_SERVER_ADDR='127.0.0.1'
+LOCAL_SERVER_ADDR='192.168.31.160'
 LOCAL_SERVER_PORT='8889'
 
 
@@ -52,17 +54,13 @@ print LOCAL_SERVER_ADDR,':',LOCAL_SERVER_PORT
 class MyHandler(StreamRequestHandler):
     def handle(self):
         recv_cnt = 0
-        rx_buf=self.request.recv(1024)
+        rx_buf=self.request.recv(4096)
 #         rx_buf=self.request.recv_bytes()
         len_buf = len(rx_buf)  
+        print len_buf
        
-        if recv_cnt == 0:  
-            data_len_total = struct.unpack('<I',rx_buf[0:8])  
-#             buf = buffer(rx_buf, 8, len_buf - 8)             
-        else:  
-            buf = buffer(rx_buf)  
-            
-        recv_cnt = recv_cnt +1 
+        res=getCaptcha.OCRByStream(rx_buf)
+        self.request.send(res+"\n")
 
 if __name__=='__main__': 
    
